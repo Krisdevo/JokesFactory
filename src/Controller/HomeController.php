@@ -18,6 +18,7 @@ final class HomeController extends AbstractController
         $joke = $blapi->getRandom($allowedTypes);
 
         return $this->render('home/index.html.twig', [
+            
             'joke' => $joke
 
 
