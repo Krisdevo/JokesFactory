@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Usine à Fun!{% endblock %}
+
+{% block body %}
+
+
+<div class="main">
+
+    <h1>Ceci est un générateur de blague! 🤡🥳</h1>
+
+    <div class="text">
+        <p id="text">{{joke.getJoke()}}</p>
+    </div>
+    <div class="control">
+        <button  type="submit" id="resp" class="response">Réponse</button>
+
+        <button   class="other"><a href="javascript:window.location.reload()">Autres blagues</button>
+
+    </div>
+</div>
+
+<script>
+
+
+    const text = document.getElementById('text');
+    const btnResp = document.getElementById('resp');
+
+    const answer = "{{ joke.getAnswer()|e('js') }}";
+
+    btnResp.addEventListener('click', () => {
+        text.textContent = answer;
+    });
+
+
+
+
+</script>
+{% endblock %}
+

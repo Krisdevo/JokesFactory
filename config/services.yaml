@@ -1,0 +1,22 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    # Définition du service concret
+    BlaguesApi\BlaguesApi:
+        factory: ['BlaguesApi\Factory\BlaguesApiFactory', create]
+        arguments: ['%env(BLAGUES_API_TOKEN)%']
+
+    # Alias vers l'interface pour que ça fonctionne avec l'autowiring
+    BlaguesApi\BlaguesApiInterface: '@BlaguesApi\BlaguesApi'
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
